@@ -33,7 +33,8 @@ platform_do_upgrade() {
 		;;
 	buffalo,ls421de|\
 	wd,cloud-ex2-ultra|\
-	wd,cloud-mirror-gen2)
+	wd,cloud-mirror-gen2|\
+	zyxel,nas326)
 		nand_do_upgrade "$1"
 		;;
 	ctera,c200-v2)

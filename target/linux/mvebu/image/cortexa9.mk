@@ -496,3 +496,20 @@ define Device/wd_cloud-mirror-gen2
   IMAGE/uImage-factory.bin := append-kernel
 endef
 TARGET_DEVICES += wd_cloud-mirror-gen2
+
+define Device/zyxel_nas326
+  $(Device/NAND-128K)
+  DEVICE_VENDOR := ZYXEL
+  DEVICE_MODEL := NAS326
+  SOC := armada-380
+  DEVICE_PACKAGES := \
+    kmod-hwmon-drivetemp kmod-usb3 \
+    kmod-md-raid0 kmod-md-raid1 kmod-md-mod kmod-fs-ext4 e2fsprogs mdadm \
+    -ppp -kmod-nft-offload -dnsmasq -odhcpd-ipv6only
+  DEVICE_DTS := armada-380-zyxel-nas326
+  IMAGE_SIZE := 240m
+  KERNEL_IN_UBI := 1
+  IMAGES += tftp.bin
+  IMAGE/tftp.bin := append-ubi | check-size
+endef
+TARGET_DEVICES += zyxel_nas326
